@@ -7,23 +7,26 @@
 
 import UIKit
 
-class ColorViewController: UIViewController {
+protocol SettingsViewControllerDelegate: AnyObject {
+    func updateColor(_ color: UIColor)
+}
 
+final class ColorViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let settingsVC = segue.destination as? SettingsViewController
+        settingsVC?.delegate = self
+        settingsVC?.color = view.backgroundColor
     }
-    */
+}
 
+
+extension ColorViewController: SettingsViewControllerDelegate {
+    func updateColor(_ color: UIColor) {
+        view.backgroundColor = color
+    }
 }
