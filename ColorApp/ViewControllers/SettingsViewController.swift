@@ -58,6 +58,11 @@ final class SettingsViewController: UIViewController {
         setupSliders()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     //MARK: - IB Actions
     @IBAction func sliderAction(_ sender: UISlider) {
         updateColor()
