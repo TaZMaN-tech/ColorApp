@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class SettingsViewController: UIViewController {
 
     //MARK: - IB Outlets
     @IBOutlet var colorView: UIView!
@@ -42,30 +42,27 @@ final class ViewController: UIViewController {
     }
     
     //MARK: - IB Actions
-    @IBAction func redSliderAction() {
-        updateLabel(redLabel, from: redSlider)
-        updateColor()
-    }
     
-    @IBAction func greenSliderAction() {
-        updateLabel(greenLabel, from: greenSlider)
+    @IBAction func sliderAction(_ sender: UISlider) {
         updateColor()
-    }
-    
-    @IBAction func blueSliderAction() {
-        updateLabel(blueLabel, from: blueSlider)
-        updateColor()
+        
+        switch sender {
+        case redSlider:
+            updateLabel(redLabel, from: redSlider)
+        case greenSlider:
+            updateLabel(greenLabel, from: greenSlider)
+        default:
+            updateLabel(blueLabel, from: blueSlider)
+        }
     }
     
     //MARK: - Private Functions
     private func updateColor() {
         colorView.backgroundColor = UIColor(
-            cgColor: .init(
-                red: redComponent,
-                green: greenComponent,
-                blue: blueComponent,
-                alpha: 1
-            )
+            red: redComponent,
+            green: greenComponent,
+            blue: blueComponent,
+            alpha: 1
         )
     }
     
